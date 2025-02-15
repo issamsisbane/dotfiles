@@ -1,2 +1,2 @@
-# dotfiles
+# Dotfiles
 My configuration files for bash, windows terminal...
