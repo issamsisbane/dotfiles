@@ -1,0 +1,10 @@
+{
+  "cssTheme": "Things",
+  "enabledCssSnippets": [
+    "title"
+  ],
+  "baseFontSizeAction": true,
+  "baseFontSize": 21,
+  "textFontFamily": "Inter",
+  "theme": "obsidian"
+}

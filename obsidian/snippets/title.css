@@ -1,0 +1,9 @@
+body {
+    --inline-title-font: var(--h1-font);
+    --inline-title-line-height: var(--h1-line-height);
+    --inline-title-size: 3.5em;
+}
+
+.inline-title {
+	text-align: center;
+}
