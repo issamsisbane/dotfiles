@@ -1,13 +1,23 @@
 # Dotfiles
 My configuration files for linux, windows terminal...
 
-## linux:
+## Linux
+
 - .bashrc
 - .tmux.conf
 - .vimrc
 - .inputrc => bind -f ~/.inputrc
 
-## windows:
+## Windows
+
 - windows terminal
 
+## Obsidian
 
+- all my configuration for obsidian
+
+## VSCode
+
+- settings.json
+- keybinding.json
+- extensions.json
