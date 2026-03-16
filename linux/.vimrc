@@ -32,15 +32,6 @@ set backspace=indent,eol,start
 set hlsearch
 set showmatch
 
-" Double
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
 " Menu autocompletion in : mode
 set wildmenu
 set wildmode=longest:full,full

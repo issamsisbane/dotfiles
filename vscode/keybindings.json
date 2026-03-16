@@ -1,7 +1,7 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "ctrl+n",
+        "key": "ctrl+alt+n",
         "command": "explorer.newFile",
     },
     {
@@ -109,5 +109,9 @@
         "key": "ctrl+w",
         "command": "-extension.vim_ctrl+w",
         "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "foam-vscode.create-note",
     }
 ]

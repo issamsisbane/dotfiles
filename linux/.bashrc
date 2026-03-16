@@ -133,6 +133,10 @@ PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\[\e[38;5;45m\]\w\[\e[38;5;
 alias k='kubectl'
 alias ks='k9s'
 alias lg='lazygit'
+alias gs='git status'
+alias gp='git push'
+alias gpl='git pull'
+alias ta='tmux attach'
 
 # Completion
 source /etc/bash_completion

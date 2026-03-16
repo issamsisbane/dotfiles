@@ -1,0 +1,12 @@
+{
+    "Insert Current Link Date": {
+        "prefix": ["#date"],
+        "body": "#$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+        "description": "Insert current date in YYYY-MM-DD format as a markdown link"
+    },
+    "Insert Current Title Date": {
+        "prefix": ["date"],
+        "body": "## $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+        "description": "Insert current date in YYYY-MM-DD format as a markdown title"
+    }
+}
