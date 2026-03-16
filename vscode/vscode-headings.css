@@ -1,0 +1,13 @@
+/* Style pour tous les titres par défaut */
+h1, h2, h3, h4, h5, h6 {
+    color: #89CFF0;
+}
+
+/* Ou spécifiez pour chaque niveau */
+h1 { color: #89CFF0; }
+h2 { color: #7FDBDA; }
+h3 { color: #75E6C4; }
+h4 { color: #6BF0AE; }
+h5 { color: #A8E6CF; }
+h6 { color: #A8E6CF; } /* Même couleur que h5 car il n'y avait que 5 couleurs */
+
