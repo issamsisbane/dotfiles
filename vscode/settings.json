@@ -66,7 +66,7 @@
       {
           "scope": "heading.1.markdown entity.name.section.markdown, heading.1.markdown punctuation.definition.heading.markdown",
           "settings": {
-              "foreground": "#0744a8ad",
+              "foreground": "#2b79f7ad",
           }
       },
       {
