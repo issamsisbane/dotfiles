@@ -1,13 +1,11 @@
 {
     "recommendations": [
-        "asapdotid.manjaro-dark",
         "foam.foam-vscode",
-        "mushan.vscode-paste-image",
-        "pkief.material-icon-theme",
-        "pomdtr.excalidraw-editor",
-        "redhat.vscode-yaml",
+        "yzhang.markdown-all-in-one",
+        "marp-team.marp-vscode",
+        "mermaidchart.vscode-mermaid-chart",
+        "asapdotid.manjaro-dark",
         "vscodevim.vim",
-        "yzane.markdown-pdf",
-        "yzhang.markdown-all-in-one"
+        "pkief.material-icon-theme"
     ]
 }
