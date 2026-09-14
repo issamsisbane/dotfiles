@@ -1,0 +1,14 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 16,
+    "foam.openDailyNote.onStartup": true,
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "foam.preview.embedNoteType": "content-card",
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
+    },
+    "markdown.copyFiles.destination": {
+        "**/*": "${documentWorkspaceFolder}/ASSETS/${unixTime}.${fileExtName}"
+    }
+}
