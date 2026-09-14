@@ -32,10 +32,6 @@
         "when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl"
     },
     {
-        "key": "alt+enter",
-        "command": "markdown.followLink",
-    },
-    {
         "key": "ctrl+up",
         "command": "git.stage",
     },
@@ -113,5 +109,55 @@
     {
         "key": "ctrl+n",
         "command": "foam-vscode.create-note",
+    },
+        // Explorateur — alt e
+    {
+        "key": "alt+e",
+        "command": "workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled && (!sideBarVisible || activeViewlet != 'workbench.view.explorer') && vim.mode == 'Normal'"
+    },
+    {
+        "key": "alt+e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "sideBarVisible && activeViewlet == 'workbench.view.explorer' && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+shift+e",
+        "command": "-workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+
+    // Git (SCM) — alt g
+    {
+        "key": "alt+g",
+        "command": "workbench.view.scm",
+        "when": "viewContainer.workbench.view.scm.enabled && (!sideBarVisible || activeViewlet != 'workbench.view.scm') && vim.mode == 'Normal'"
+    },
+    {
+        "key": "alt+g",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "-workbench.view.scm",
+        "when": "viewContainer.workbench.view.scm.enabled"
+    },
+
+    // Extensions — x
+    {
+        "key": "alt+x",
+        "command": "workbench.view.extensions",
+        "when": "viewContainer.workbench.view.extensions.enabled && (!sideBarVisible || activeViewlet != 'workbench.view.extensions') && vim.mode == 'Normal'"
+    },
+    {
+        "key": "alt+x",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "sideBarVisible && activeViewlet == 'workbench.view.extensions' && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+shift+x",
+        "command": "-workbench.view.extensions",
+        "when": "viewContainer.workbench.view.extensions.enabled"
     }
 ]
