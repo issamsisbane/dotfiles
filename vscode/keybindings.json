@@ -57,21 +57,6 @@
         "command": "git-graph.view"
     },
     {
-        "key": "ctrl+enter",
-        "command": "markdown.extension.onCtrlEnterKey",
-        "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadonly && !markdown.extension.editor.cursor.inFencedCodeBlock && !markdown.extension.editor.cursor.inMathEnv && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/ || editorTextFocus && !editorHasMultipleSelections && !editorReadonly && !markdown.extension.editor.cursor.inFencedCodeBlock && !markdown.extension.editor.cursor.inMathEnv && config.editor.acceptSuggestionOnEnter == 'off' && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-    },
-    {
-        "key": "ctrl+enter",
-        "command": "-markdown.extension.onCtrlEnterKey",
-        "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadonly && !markdown.extension.editor.cursor.inFencedCodeBlock && !markdown.extension.editor.cursor.inMathEnv && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/ || editorTextFocus && !editorHasMultipleSelections && !editorReadonly && !markdown.extension.editor.cursor.inFencedCodeBlock && !markdown.extension.editor.cursor.inMathEnv && config.editor.acceptSuggestionOnEnter == 'off' && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-    },
-    {
-        "key": "ctrl+enter",
-        "command": "-editor.action.insertLineAfter",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
         "key": "ctrl+shift+v",
         "command": "markdown.showPreviewToSide",
         "when": "!notebookEditorFocused && editorLangId == 'markdown'"
@@ -93,8 +78,19 @@
     },
     {
         "key": "ctrl+enter",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "editor.action.revealDefinition",
+                "editor.action.openLink"
+            ]
+        },
+        "when": "editorTextFocus && editorLangId == markdown"
+    },
+    {
+        "key": "ctrl+enter",
         "command": "editor.action.revealDefinition",
-        "when": "editorHasDefinitionProvider && editorTextFocus"
+        "when": "editorHasDefinitionProvider && editorTextFocus && editorLangId != markdown"
     },
     {
         "key": "f12",
@@ -159,35 +155,5 @@
         "key": "ctrl+shift+x",
         "command": "-workbench.view.extensions",
         "when": "viewContainer.workbench.view.extensions.enabled"
-    },
-    {
-        "key": "ctrl+j",
-        "command": "workbench.action.quickOpenSelectNext",
-        "when": "inQuickOpen"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "workbench.action.quickOpenSelectPrevious",
-        "when": "inQuickOpen"
-    },
-    { 
-        "key": "a", 
-        "command": "explorer.newFile", 
-        "when": "filesExplorerFocus && !inputFocus" 
-    },
-    {
-        "key": "shift+a",
-        "command": "explorer.newFolder",
-        "when": "filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "r",
-        "command": "renameFile",
-        "when": "filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "d",
-        "command": "deleteFile",
-        "when": "filesExplorerFocus && !inputFocus"
     }
 ]
