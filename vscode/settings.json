@@ -1,4 +1,10 @@
 {
+     "terminal.integrated.commandsToSkipShell": [
+        "workbench.view.explorer",
+        "workbench.view.scm",
+        "workbench.view.extensions",
+        "workbench.action.toggleSidebarVisibility"
+    ],
     "markdown.marp.html": "all",
     "markdown.preview.fontFamily": "Inter",
     "markdown.preview.fontSize": 16,
