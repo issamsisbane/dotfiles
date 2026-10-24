@@ -3,7 +3,7 @@
    Re-run automatically by chezmoi whenever the content hash of this template changes. */ -}}
 # Content hash (forces re-run on change): {{ include "dot_config/vscode-dotfiles/settings.json" | sha256sum }}
 
-$source = Join-Path $env:USERPROFILE "dot_config\vscode-dotfiles"
+$source = Join-Path $env:USERPROFILE ".config\vscode-dotfiles"
 $target = Join-Path $env:APPDATA "Code\User"
 
 if (-not (Test-Path $target)) {

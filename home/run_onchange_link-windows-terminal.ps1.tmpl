@@ -4,7 +4,7 @@
    change between installs/channels). Re-run automatically whenever the content changes. */ -}}
 # Content hash (forces re-run on change): {{ include "dot_config/windows-terminal/settings.json" | sha256sum }}
 
-$source = Join-Path $env:USERPROFILE "dot_config\windows-terminal\settings.json"
+$source = Join-Path $env:USERPROFILE ".config\windows-terminal\settings.json"
 
 $packageDir = Get-ChildItem "$env:LOCALAPPDATA\Packages" -Filter "Microsoft.WindowsTerminal_*" -Directory |
     Select-Object -First 1
