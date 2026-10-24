@@ -40,6 +40,14 @@ chezmoi update   # git pull + apply
 chezmoi apply
 ```
 
+## Usage au quotidien
+
+- `link-vscode-settings.ps1` et `link-windows-terminal.ps1` sont des scripts `run_` simples (pas `run_once_`/`run_onchange_`) : ils n'ont **aucun état "déjà appliqué" mémorisé**, exprès, pour se relancer à *chaque* `chezmoi apply` et refaire la vérification hardlink/sync à chaque fois (voir ci-dessus). Du coup `chezmoi diff`/`chezmoi apply` les affiche systématiquement, même quand il n'y a rien de nouveau à faire — ce n'est pas un signe de problème. Pour un diff plus lisible qui ne montre que les vrais fichiers :
+  ```sh
+  chezmoi diff --exclude=scripts
+  ```
+- Au tout premier `apply` sur une machine qui a déjà des dotfiles existants (cas normal), chezmoi demande confirmation avant d'écraser chaque fichier (`.bashrc has changed since chezmoi last wrote it?`) : c'est sa protection standard contre l'écrasement accidentel, pas une erreur. Répondre `a` (all-overwrite) accepte le remplacement pour ce fichier et les suivants sans redemander. Une fois ce premier `apply` passé, les `apply` suivants n'ont plus besoin de `--force`.
+
 ## Devcontainers / Codespaces
 
 Pas de configuration à faire par projet : les réglages `dotfiles.repository` / `dotfiles.targetPath` / `dotfiles.installCommand` dans les settings VS Code (gérés ici dans `home/dot_config/vscode-dotfiles/settings.json`) font que VS Code clone automatiquement ce repo dans `~/dotfiles` et exécute `install.sh` à chaque création de devcontainer/Codespace, sans prompt (le chassis `devcontainer` est forcé non-interactivement).
