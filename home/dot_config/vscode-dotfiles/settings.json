@@ -20,18 +20,18 @@
     "workbench.editorAssociations": {
         "*.pdf": "default"
     },
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 1,
     "editor.inlineSuggest.enabled": true,
     "git.openRepositoryInParentFolders": "never",
     "redhat.telemetry.enabled": false,
     "workbench.editor.limit.value": 3,
     "workbench.editor.limit.enabled": true,
     "workbench.preferredDarkColorTheme": "Manjaro Halcyon Dark",
-    "workbench.preferredLightColorTheme": "VS Code Light",
+    "workbench.preferredLightColorTheme": "GitHub Light Default",
     "workbench.tree.indent": 16,
     "workbench.view.alwaysShowHeaderActions": true,
     "workbench.editor.closeOnFileDelete": true,
-    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontSize": 16,
     "yaml.customTags": [
         "!Base64 scalar",
         "!Cidr scalar",
@@ -61,7 +61,7 @@
     },
     "material-icon-theme.folders.color": "#42a5f5",
     "material-icon-theme.files.color": "#42a5f5",
-    "workbench.colorTheme": "VS Code Light",
+    "workbench.colorTheme": "Manjaro Halcyon Dark",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.sideBar.location": "left",
     "remote.SSH.remotePlatform": {
@@ -75,7 +75,7 @@
       {
           "scope": "heading.1.markdown entity.name.section.markdown, heading.1.markdown punctuation.definition.heading.markdown",
           "settings": {
-              "foreground": "#2b79f7ad",
+              "foreground": "#5199ffad",
           }
       },
       {
@@ -144,5 +144,59 @@
     "vim.highlightedyank.enable": true,
     "vim.leader": "\\",
     "material-icon-theme.folders.theme": "specific",
-    "material-icon-theme.hidesExplorerArrows": false
+    "material-icon-theme.hidesExplorerArrows": false,
+    "glassit.alpha": 220,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "-"
+            ],
+            "commands": [
+                {
+                    "command": "oil-code.open"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<cr>"
+            ],
+            "commands": [
+                {
+                    "command": "oil-code.select"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<c-l>"
+            ],
+            "commands": [
+                {
+                    "command": "oil-code.refresh"
+                }
+            ]
+        },
+        {
+            "before": [
+                "`"
+            ],
+            "commands": [
+                {
+                    "command": "oil-code.cd"
+                }
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "d"
+            ],
+            "commands": [
+                {
+                    "command": "oil-code.toggleDetails"
+                }
+            ]
+        }
+    ]
 }
