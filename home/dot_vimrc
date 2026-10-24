@@ -45,13 +45,7 @@ set smartcase
 " Makes search act like search in modern browsers
 set incsearch
 
-" Smart way to move between windows
-"map <C-j> <C-W>j
-"map <C-k> <C-W>k
-"map <C-h> <C-W>h
-"map <C-l> <C-W>l
-
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
+" Move a line of text using Ctrl+[jk]
 nnoremap <C-j> mz:m+<CR>`z
 nnoremap <C-k> mz:m-2<CR>`z
 
