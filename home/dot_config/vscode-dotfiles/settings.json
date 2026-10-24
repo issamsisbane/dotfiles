@@ -1,4 +1,7 @@
 {
+    "dotfiles.repository": "issamsisbane/dotfiles",
+    "dotfiles.targetPath": "~/dotfiles",
+    "dotfiles.installCommand": "install.sh",
      "terminal.integrated.commandsToSkipShell": [
         "workbench.view.explorer",
         "workbench.view.scm",

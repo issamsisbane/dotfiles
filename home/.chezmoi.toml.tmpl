@@ -1,0 +1,27 @@
+{{- /* Detect which subset of dotfiles to apply. Checked in order:
+   1. CHEZMOI_CHASSIS env var (set by install.sh to force a value non-interactively,
+      e.g. inside a devcontainer where we don't want to block on a prompt)
+   2. VS Code Dev Containers / GitHub Codespaces env vars -> "devcontainer"
+   3. native Windows (Git Bash)                            -> "windows-gitbash"
+   4. Linux kernel release containing "microsoft"          -> "wsl"
+   5. any other Linux                                      -> "linux"
+   6. anything else: ask once, interactively                                  */ -}}
+{{- $chassis := "" -}}
+{{- if env "CHEZMOI_CHASSIS" -}}
+{{-   $chassis = env "CHEZMOI_CHASSIS" -}}
+{{- else if or (env "REMOTE_CONTAINERS") (env "CODESPACES") -}}
+{{-   $chassis = "devcontainer" -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   $chassis = "windows-gitbash" -}}
+{{- else if and (eq .chezmoi.os "linux") (contains "microsoft" (.chezmoi.kernel.osrelease | lower)) -}}
+{{-   $chassis = "wsl" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $chassis = "linux" -}}
+{{- else -}}
+{{-   $chassis = promptStringOnce . "chassis" "Type de machine (wsl/linux/windows-gitbash/devcontainer)" "linux" -}}
+{{- end -}}
+
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[data]
+    chassis = {{ $chassis | quote }}

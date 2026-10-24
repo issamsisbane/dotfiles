@@ -1,0 +1,21 @@
+{{/* Files relevant only outside Windows: tmux + nvim don't apply to Git Bash */}}
+{{- if eq .chassis "windows-gitbash" }}
+.tmux.conf
+.tmux-18.conf
+.config/nvim
+{{- end }}
+
+{{/* Files relevant only inside a devcontainer: no LazyVim base checked out there by default */}}
+{{- if eq .chassis "devcontainer" }}
+.config/nvim
+.tmux-18.conf
+{{- end }}
+
+{{/* Windows-only canonical configs + the scripts that link them into place */}}
+{{- if ne .chassis "windows-gitbash" }}
+.config/vscode-dotfiles
+.config/windows-terminal
+.wslconfig
+link-vscode-settings.ps1
+link-windows-terminal.ps1
+{{- end }}
