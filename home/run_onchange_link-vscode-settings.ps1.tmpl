@@ -29,7 +29,7 @@ foreach ($name in $links.Keys) {
 
     if (-not (Test-Path $dst)) {
         try {
-            New-Item -ItemType SymbolicLink -Path $dst -Target $src -Force | Out-Null
+            New-Item -ItemType SymbolicLink -Path $dst -Target $src -Force -ErrorAction Stop | Out-Null
         } catch {
             # Fallback when symlink creation isn't allowed (Developer Mode off, no elevation)
             Copy-Item $src $dst -Force
@@ -45,7 +45,7 @@ if (-not (Test-Path $snippetsDir)) {
 $snippetsDst = Join-Path $snippetsDir "snippets.json"
 if (-not (Test-Path $snippetsDst)) {
     try {
-        New-Item -ItemType SymbolicLink -Path $snippetsDst -Target $snippetsSrc -Force | Out-Null
+        New-Item -ItemType SymbolicLink -Path $snippetsDst -Target $snippetsSrc -Force -ErrorAction Stop | Out-Null
     } catch {
         Copy-Item $snippetsSrc $snippetsDst -Force
     }
