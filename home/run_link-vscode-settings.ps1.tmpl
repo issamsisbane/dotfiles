@@ -1,0 +1,62 @@
+{{- /* Windows-only: link the chezmoi-managed VS Code user files into %APPDATA%\Code\User,
+   which lives outside $HOME and so can't be managed by chezmoi directly.
+
+   This is a plain run_ script (not run_onchange_), so it runs on every
+   `chezmoi apply`, not just when the canonical files change. That matters
+   because on a machine where Developer Mode / elevation isn't available
+   (symlinks can't be created), the "link" is actually a plain copy. In
+   that case we can't detect an edit made directly in VS Code just by
+   diffing the repo, so instead: each run, for every managed file, whichever
+   side (the chezmoi-managed copy, or VS Code's real file) was modified most
+   recently wins and gets copied onto the other side. That way an edit made
+   through the VS Code UI gets pulled back into the chezmoi-managed copy
+   (and shows up in `chezmoi diff` / git) instead of being silently
+   overwritten next time the repo changes. */ -}}
+
+function Sync-ManagedFile {
+    param([string]$Src, [string]$Dst)
+
+    $dstDir = Split-Path $Dst -Parent
+    if (-not (Test-Path $dstDir)) {
+        New-Item -ItemType Directory -Path $dstDir -Force | Out-Null
+    }
+
+    if (Test-Path $Dst) {
+        $dstItem = Get-Item $Dst -Force
+        if ($dstItem.LinkType -eq "SymbolicLink") {
+            # Already a real symlink: nothing to reconcile, both sides are
+            # literally the same file.
+            return
+        }
+
+        # Plain file on both sides (no symlink support on this machine):
+        # whichever was edited most recently wins.
+        $srcItem = Get-Item $Src -Force
+        if ($dstItem.LastWriteTime -gt $srcItem.LastWriteTime) {
+            Copy-Item $Dst $Src -Force
+        }
+        Remove-Item $Dst -Force
+    }
+
+    try {
+        New-Item -ItemType SymbolicLink -Path $Dst -Target $Src -Force -ErrorAction Stop | Out-Null
+    } catch {
+        # Fallback when symlink creation isn't allowed (Developer Mode off, no elevation)
+        Copy-Item $Src $Dst -Force
+    }
+}
+
+$source = Join-Path $env:USERPROFILE ".config\vscode-dotfiles"
+$target = Join-Path $env:APPDATA "Code\User"
+
+$links = @{
+    "settings.json"       = "settings.json"
+    "keybindings.json"    = "keybindings.json"
+    "vscode-headings.css" = "vscode-headings.css"
+}
+
+foreach ($name in $links.Keys) {
+    Sync-ManagedFile -Src (Join-Path $source $links[$name]) -Dst (Join-Path $target $name)
+}
+
+Sync-ManagedFile -Src (Join-Path $source "snippets.json") -Dst (Join-Path $target "snippets\snippets.json")

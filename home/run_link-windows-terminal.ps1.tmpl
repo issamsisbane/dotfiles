@@ -1,0 +1,50 @@
+{{- /* Windows-only: link the chezmoi-managed Windows Terminal settings.json into the
+   package's LocalState folder, which lives outside $HOME and can't be managed by
+   chezmoi directly. The package folder name is resolved dynamically (it embeds a
+   hash that can change between installs/channels).
+
+   Plain run_ script (not run_onchange_): see run_link-vscode-settings.ps1.tmpl for
+   why this needs to run on every apply and does a most-recently-modified-wins sync
+   when symlinks aren't available (no Developer Mode / elevation on this machine). */ -}}
+
+function Sync-ManagedFile {
+    param([string]$Src, [string]$Dst)
+
+    $dstDir = Split-Path $Dst -Parent
+    if (-not (Test-Path $dstDir)) {
+        New-Item -ItemType Directory -Path $dstDir -Force | Out-Null
+    }
+
+    if (Test-Path $Dst) {
+        $dstItem = Get-Item $Dst -Force
+        if ($dstItem.LinkType -eq "SymbolicLink") {
+            return
+        }
+
+        $srcItem = Get-Item $Src -Force
+        if ($dstItem.LastWriteTime -gt $srcItem.LastWriteTime) {
+            Copy-Item $Dst $Src -Force
+        }
+        Remove-Item $Dst -Force
+    }
+
+    try {
+        New-Item -ItemType SymbolicLink -Path $Dst -Target $Src -Force -ErrorAction Stop | Out-Null
+    } catch {
+        Copy-Item $Src $Dst -Force
+    }
+}
+
+$source = Join-Path $env:USERPROFILE ".config\windows-terminal\settings.json"
+
+$packageDir = Get-ChildItem "$env:LOCALAPPDATA\Packages" -Filter "Microsoft.WindowsTerminal_*" -Directory |
+    Select-Object -First 1
+
+if (-not $packageDir) {
+    Write-Warning "Windows Terminal package folder not found, skipping settings link."
+    exit 0
+}
+
+$target = Join-Path $packageDir.FullName "LocalState\settings.json"
+
+Sync-ManagedFile -Src $source -Dst $target
