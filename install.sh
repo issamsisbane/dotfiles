@@ -29,7 +29,7 @@ CHEZMOI="$(chezmoi_bin || true)"
 
 if [ -z "$CHEZMOI" ]; then
   echo "chezmoi not found, installing to $LOCAL_BIN ..."
-  sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$LOCAL_BIN"
+  sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b "$LOCAL_BIN"
   CHEZMOI="$(chezmoi_bin || true)"
   if [ -z "$CHEZMOI" ]; then
     echo "error: chezmoi installer ran but no binary found in $LOCAL_BIN" >&2
